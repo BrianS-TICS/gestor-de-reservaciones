@@ -1,12 +1,14 @@
 import express from 'express'
 import {
-    guardaPropietario
+    registrar,
+    obtener
 } from '../controllers/PropietarioController.js'
 
 const route = express.Router()
 
 
-route.post('/', guardaPropietario)
+route.post('/', registrar)
+route.get('/', obtener)
 
 
 

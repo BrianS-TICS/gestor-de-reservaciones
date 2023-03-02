@@ -6,16 +6,16 @@ const registrar = async (req, res) => {
 
 
     // * Valida por correo duplicado
-    const propietario = await Propietario.findOne({email})
+    const propietario = await Propietario.findOne({ email })
 
     if (propietario) {
         const error = new Error("Ya hay una cuenta existente con ese correo")
-        res.status(404).json({ msg: error.message })
+        return res.status(404).json({ msg: error.message })
     }
 
     try {
         const propietario = new Propietario(req.body)
-        const PropietarioGuardado = await Propietario.save()
+        const PropietarioGuardado = await Propietario.create(propietario)
         res.json({ msg: { PropietarioGuardado } })
 
     } catch (error) {
@@ -23,6 +23,17 @@ const registrar = async (req, res) => {
     }
 }
 
+const obtener = async (req, res) => {
+    const propietarios = await Propietario.find()
+
+    try {
+        res.status(404).json({ msg : propietarios})
+    } catch (error) {
+        
+    }
+}
+
 export {
-    registrar
+    registrar,
+    obtener
 }

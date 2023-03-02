@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import generaID from "../helpers/generaID";
+import generaID from "../helpers/generaID.js";
 
 const PropietarioSchema = mongoose.Schema({
     nombre: {
@@ -22,7 +22,7 @@ const PropietarioSchema = mongoose.Schema({
         trim: true
     },
     token : {
-        type : generaID()
+        type : String
     },
     confirmado : {
         type : Boolean,
